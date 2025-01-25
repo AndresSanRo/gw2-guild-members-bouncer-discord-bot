@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 import os
+from commands.set_gw2_api_key import set_gw2_api_key
 
 GUILD_ID = discord.Object(id=os.environ["DISCORD_SERVER_ID"])
 
@@ -26,5 +27,15 @@ client = Client(command_prefix="!", intents=intents)
 @client.tree.command(name="hello", description="Say hello", guild=GUILD_ID)
 async def hello(interaction: discord.Integration):
     await interaction.response.send_message("Hello there!")
+
+@client.tree.command(name="set-api-key", description="Set in the bot the API key. It has to be the API key of the guild leader", guild=GUILD_ID)
+async def set_api_key(interaction: discord.Integration, api_key: str):
+    try:
+        set_gw2_api_key(api_key)
+        await interaction.response.send_message("API key set!")
+    except Exception as e:
+        print(f"Error setting API key: {e}")
+        await interaction.response.send_message(f"Error setting API key")
+
 
 client.run(os.environ["DISCORD_TOKEN"])
