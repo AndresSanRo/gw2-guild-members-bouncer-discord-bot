@@ -1,0 +1,22 @@
+[project]
+name = "gw2-guild-members-bouncer-discord-bot"
+version = "0.1.0"
+description = "A bot that helps to track whether a person is in the Guild Wars 2 guild"
+authors = [
+    {name = "AndresSanRo",email = "andres.san.ro@outlook.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "discord-py (>=2.4.0,<3.0.0)",
+    "audioop-lts (>=0.2.1,<0.3.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.plugins.dotenv]
+ignore = "false"
+location = "./env/.env.dev"
