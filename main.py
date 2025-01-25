@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord import app_commands
 import os
 from commands.set_gw2_api_key import set_gw2_api_key
+from commands.set_gw2_guild_id import set_gw2_guild_id
 
 GUILD_ID = discord.Object(id=os.environ["DISCORD_SERVER_ID"])
 
@@ -37,5 +38,13 @@ async def set_api_key(interaction: discord.Integration, api_key: str):
         print(f"Error setting API key: {e}")
         await interaction.response.send_message(f"Error setting API key")
 
+@client.tree.command(name="set-guild-id", description="Set in the gw2 guild id.", guild=GUILD_ID)
+async def set_guild_id(interaction: discord.Integration, guild_id: str):
+    try:
+        set_gw2_guild_id(guild_id)
+        await interaction.response.send_message("Guild ID set!")
+    except Exception as e:
+        print(f"Error setting Guild Id: {e}")
+        await interaction.response.send_message(f"Error setting Guild ID")
 
 client.run(os.environ["DISCORD_TOKEN"])
