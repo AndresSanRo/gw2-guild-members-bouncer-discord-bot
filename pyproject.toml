@@ -21,3 +21,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.plugins.dotenv]
 ignore = "false"
 location = "./env/.env.dev"
+
+[tool.poetry]
+package-mode = false
