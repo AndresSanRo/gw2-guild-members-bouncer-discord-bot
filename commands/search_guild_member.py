@@ -1,20 +1,11 @@
 import datetime
 import discord
-import os
-import requests
-from .utils.json import read_json
+from .utils.gw2_api import get_guild_members
 
 
-def get_guild_member(account_name: str):
+def search_guild_member(account_name: str):
     try:
-        dc_server_id = os.environ["DISCORD_SERVER_ID"]
-        data_path = os.path.join(f"data/{dc_server_id}.json")
-        data = read_json(data_path)
-
-        url = f"https://api.guildwars2.com/v2/guild/{data["guild_id"]}/members?access_token={data["api_key"]}"
-        response = requests.get(url)
-        response.raise_for_status()
-        guild_members = response.json()
+        guild_members = get_guild_members()
         for member in guild_members:
             if member["name"] == account_name:
                 return member
