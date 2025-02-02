@@ -49,7 +49,7 @@ async def set_guild_id(interaction: discord.Integration, guild_id: str):
         print(f"Error setting Guild Id: {e}")
         await interaction.response.send_message(f"Error setting Guild ID")
 
-@client.tree.command(name="guild-member", description="Get the list of members of the guild", guild=GUILD_ID)
+@client.tree.command(name="guild-member", description="Search if a player is on the guild", guild=GUILD_ID)
 async def guild_member(interaction: discord.Integration, account_name: str):
     try:
         member = search_guild_member(account_name)
