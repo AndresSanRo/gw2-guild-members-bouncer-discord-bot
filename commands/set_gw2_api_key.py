@@ -1,5 +1,5 @@
 import os
-from .utils.write_json import write_json
+from .utils.json import write_json
 
 def set_gw2_api_key(api_key: str):
     dc_server_id = os.environ["DISCORD_SERVER_ID"]
