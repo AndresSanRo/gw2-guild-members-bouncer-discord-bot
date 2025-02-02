@@ -25,10 +25,6 @@ intents  = discord.Intents.default()
 intents.message_content = True
 client = Client(command_prefix="!", intents=intents)
 
-@client.tree.command(name="hello", description="Say hello", guild=GUILD_ID)
-async def hello(interaction: discord.Integration):
-    await interaction.response.send_message("Hello there!")
-
 @client.tree.command(name="set-api-key", description="Set in the bot the API key. It has to be the API key of the guild leader", guild=GUILD_ID)
 async def set_api_key(interaction: discord.Integration, api_key: str):
     try:
