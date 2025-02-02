@@ -6,6 +6,7 @@ from commands.set_gw2_api_key import set_gw2_api_key
 from commands.set_gw2_guild_id import set_gw2_guild_id
 from commands.search_guild_member import search_guild_member
 from commands.search_guild_member import build_guild_member_found_embed
+from commands.search_guild_member import build_guild_member_not_found_embed
 
 GUILD_ID = discord.Object(id=os.environ["DISCORD_SERVER_ID"])
 
@@ -53,7 +54,10 @@ async def set_guild_id(interaction: discord.Integration, guild_id: str):
 async def guild_member(interaction: discord.Integration, account_name: str):
     try:
         member = search_guild_member(account_name)
-        embed_response = build_guild_member_found_embed(member)
+        if member is None:
+            embed_response = build_guild_member_not_found_embed(account_name)
+        else:
+            embed_response = build_guild_member_found_embed(member)
         await interaction.response.send_message(embed=embed_response)
     except Exception as e:
         print(f"Error getting guild member: {e}")

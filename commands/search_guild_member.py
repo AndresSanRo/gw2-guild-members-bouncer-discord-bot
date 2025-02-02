@@ -23,3 +23,7 @@ def build_guild_member_found_embed(member):
     embed.add_field(name="Rank", value=member["rank"], inline=False)
     embed.add_field(name="Joined on", value=formatted_date, inline=False)
     return embed
+
+def build_guild_member_not_found_embed(account_name):
+    embed = discord.Embed(title="Guild member not found!", description=f"The player {account_name} is not on the guild", color=discord.Color.red())
+    return embed
