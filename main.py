@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-from discord import app_commands
 import os
 from commands.set_gw2_api_key import set_gw2_api_key
 from commands.set_gw2_guild_id import set_gw2_guild_id
